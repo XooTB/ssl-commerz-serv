@@ -5,14 +5,15 @@ const store_passwd = "self6327273f0748d@ssl";
 const is_live = false;
 
 export const sslInit = (req, res, next) => {
+  const { total } = req.body;
   const data = {
-    total_amount: 100,
+    total_amount: total,
     currency: "BDT",
-    tran_id: "REF221", // use unique tran_id for each api call
+    tran_id: "REF221",
     success_url: `${process.env.ROOT_URL}/sslcommerz/success`,
-    fail_url: `${process.env.ROOT_URL}/sslcommerz/fail`,
-    cancel_url: `${process.env.ROOT_URL}/sslcommerz/cancel`,
-    ipn_url: `${process.env.ROOT_URL}/sslcommerz/ipn`,
+    fail_url: `${process.env.ROOT_URL}/sslcommerz/failed`,
+    cancel_url: `${process.env.ROOT_URL}/sslcommerz/cancelled`,
+    // ipn_url: `${process.env.ROOT_URL}/sslcommerz/ipn`,
     shipping_method: "Courier",
     product_name: "Computer.",
     product_category: "Electronic",
@@ -44,7 +45,7 @@ export const sslInit = (req, res, next) => {
       paymentLink: GatewayURL,
     });
 
-    console.log("Redirecting to: ", GatewayURL);
+    // console.log("Redirecting to: ", GatewayURL);
   });
 };
 
@@ -64,5 +65,5 @@ export const failed = async (req, res, next) => {
 
 export const canceled = async (req, res, next) => {
   const data = req.body;
-  res.status(200).redirect("/canceled");
+  res.status(200).redirect("/cancelled");
 };

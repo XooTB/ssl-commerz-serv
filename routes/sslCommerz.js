@@ -8,12 +8,12 @@ import {
 
 const router = express.Router();
 
-router.get("/init", sslInit);
+router.post("/init", sslInit);
 
 router.post("/success", success);
 
 router.post("/failed", failed);
 
-router.post("/canceled", canceled);
+router.post("/cancelled", canceled);
 
 export default router;
