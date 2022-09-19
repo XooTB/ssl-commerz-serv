@@ -1,11 +1,14 @@
+//Import NPM Packages
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import * as dotenv from "dotenv";
 
+//Import Routes
 import SSLCommerz from "./routes/sslCommerz.js";
 import Bkash from "./routes/bkashRoutes.js";
 
+//Configure App
 dotenv.config();
 
 const app = express();
